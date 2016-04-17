@@ -6,11 +6,11 @@ function y = filterSignal(x, Fs)
 
 fs = Fs;
 fcutlow  = 900;
-fcuthigh = 12000;
+fcuthigh = 2000;
 %[b,a]    = butter(order,[fcutlow,fcuthigh]/(fs/2), 'bandpass'); IIR filter
 % Probably the best solution is to use FIR, since there is no phase shift; 
 % Not sure yet which order of the filter to choose; 
-d = designfilt('bandpassfir','FilterOrder',30, ...
+d = designfilt('bandpassfir','FilterOrder',40, ...
 'CutoffFrequency1',fcutlow,'CutoffFrequency2',fcuthigh, ...
 'SampleRate',fs);
 

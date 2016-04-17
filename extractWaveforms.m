@@ -6,7 +6,7 @@ function w = extractWaveforms(x,s,fs)
 %   length(window) x #spikes x #channels.
 
 % 1ms window into samples
-t = 0.001*fs;
+t = 0.0005*fs;
 nChannels = size(x,2);
 % size for preasllocation
 for i=1:nChannels
@@ -15,10 +15,12 @@ end
 
 % Preallocation
 w = NaN(2*t,max(l),nChannels);
+
 for i =1:nChannels
     for n=1:length(s{i})
-        % Exctaction :)
+        % Extraction :)
 w(:,n,i) = x([s{i}(n)-t]:[s{i}(n)+t-1],i) ;
+
     end
 end
 
