@@ -32,11 +32,18 @@ for c=1:nClust^2
     if pairs(c,1)== pairs(c,2)
         p_color = 'r';
     else 
-        p_color = 'b';
+        p_color = [0.2 0.2 0.2];
     end    
     subplot(9,9,c); 
-    title(num2str(pairs(c,:)));
-    bar(bins, h,'histc',p_color,'edg');
-    xlabel('time(ms)');
-    ylabel('frequency');
+    
+    bar(bins, h,'FaceColor',p_color,'EdgeColor',p_color);
+    if c>1 && c<9
+    title(num2str(pairs(c,1)));
+    end
+    if mo
+    if c~= 73   
+           set(gca,'XTick',[],'YTick',[]);
+    end
+    %xlabel('time(ms)');
+    %ylabel('frequency');
 end

@@ -35,8 +35,15 @@ for c=1:nClust^2
         p_color = [0.2 0.2 0.2];
     end    
     subplot(9,9,c); 
-    title(num2str(pairs(c,:)));
+    
     bar(bins, h,'FaceColor',p_color,'EdgeColor',p_color);
-    %xlabel('time(ms)');
-    %ylabel('frequency');
+
+    if c~= 73   
+           set(gca,'XTick',[],'YTick',[]);
+        
+    else 
+          xlabel('time(ms)'); 
+           ylabel('frequency');
+    end
+    
 end

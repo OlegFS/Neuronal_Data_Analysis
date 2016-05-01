@@ -19,15 +19,18 @@ for i =1:length(pairs)
        S2= Sigma(:,:,pairs(i,2));
        S = S1+S2;
        W=pinv(S)*(m2-m1)';
-       subplot(9,9,i)
+      
         if pairs(i,1)== pairs(i,2)
             continue
         end
+         subplot(9,9,i)
         h1= b(assignments==pairs(i,1),:)*W;
         histogram(h1, 'EdgeColor',clrMap(pairs(i,1),:),...
             'FaceColor',clrMap(pairs(i,1),:)); hold on;
+        set(gca,'XTick',[],'YTick',[]);
         h2= b(assignments==pairs(i,2),:)*W; 
         histogram(h2,'EdgeColor',clrMap(pairs(i,2),:),...
             'FaceColor',clrMap(pairs(i,2),:)); 
+        set(gca,'XTick',[],'YTick',[]);
 
 end
