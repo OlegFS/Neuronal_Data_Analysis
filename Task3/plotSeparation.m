@@ -25,12 +25,15 @@ for i =1:length(pairs)
         end
          subplot(9,9,i)
         h1= b(assignments==pairs(i,1),:)*W;
-        histogram(h1, 'EdgeColor',clrMap(pairs(i,1),:),...
+        h2= b(assignments==pairs(i,2),:)*W; 
+        h2 = (h2-mean(h1))./std(h2);
+        histogram(zscore(h1), 'EdgeColor',clrMap(pairs(i,1),:),...
             'FaceColor',clrMap(pairs(i,1),:)); hold on;
         set(gca,'XTick',[],'YTick',[]);
-        h2= b(assignments==pairs(i,2),:)*W; 
+       
+        
         histogram(h2,'EdgeColor',clrMap(pairs(i,2),:),...
             'FaceColor',clrMap(pairs(i,2),:)); 
         set(gca,'XTick',[],'YTick',[]);
-
+        xlim([-5 10])
 end

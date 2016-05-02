@@ -11,6 +11,11 @@ pairs = combvec(1:nClust,1:nClust)';
 figure; 
 maxlag = 20;
 binsize = 0.5;
+a = colormap(lines);
+clrMap = a(1:7,:);
+clrMap(8,:) = [0 0 0];
+clrMap(9,:) = [1 0 0];
+
 
 range = [-maxlag:binsize:maxlag];
 bins= [range(2:end-1)];
@@ -30,9 +35,9 @@ for c=1:nClust^2
         end
     
     if pairs(c,1)== pairs(c,2)
-        p_color = 'r';
+        p_color = clrMap(pairs(c,1),:);
     else 
-        p_color = [0.2 0.2 0.2];
+        p_color = [0.5 0.5 0.5];
     end    
     subplot(9,9,c); 
     
