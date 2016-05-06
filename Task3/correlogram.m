@@ -1,4 +1,4 @@
-function [ccg] = correlogram(t, assignments, binsize, maxlag)
+function [ccg,bins] = correlogram(t, assignments, binsize, maxlag)
 % Calculate cross-correlograms. bins
 %   ccg = calcCCG(t, assignment, binsize, maxlag) calculates the cross- and
 %   autocorrelograms for all pairs of clusters with input
@@ -14,13 +14,13 @@ function [ccg] = correlogram(t, assignments, binsize, maxlag)
 nClust = max(assignments);
 [c1, c2]=find(triu(ones(nClust))==1);
 z = size([c1 c2],1);
-   range = [-maxlag:binsize:maxlag];
+range = [-maxlag:binsize:maxlag];
+bins= [range(2:end-1)];
     if find(range==0)~=0;
         izero =find(range==0);
         range = [range(1:izero) range(izero+2:end)];
     end
-    ccg =zeros(length(range)-1,z);
-    
+ccg =zeros(length(range)-1,z);
 for c=1:z
     dat1 = t(assignments==c1(c));
     dat2 = t(assignments==c2(c));
@@ -30,5 +30,6 @@ for c=1:z
             ccg(izero,c)= NaN;
         end
 end
+
 
 
