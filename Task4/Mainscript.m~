@@ -73,22 +73,6 @@ RES = [result; result2(end-(length(xF)-length(result)-1):end)];
 corr(y, RES)
 plot(RES); hold on;
 plot(y+4)
-
-%% Deconv OLD
-result1 = deconv([x; zeros(99,1),kern);
-% Rectification
-result1 = result1.*(result1>0); 
-% Deconv fliped signal to get the whole data
-result2 = deconv(flip(x),pinv(kern));
-% Rectification
-result2 = result2.*(result2>0);
-result2 = flip(result2);
-% Decontruct the data
-result = [result1; result2(end-(length(x)-length(result1)-1):end)];
-
-
-
-
 %% Extract features
 X = zeros(20,sum(y>0));
 ind = find(y>0);
@@ -121,9 +105,8 @@ xF = filterTraces(x, fs);
 
 
 %%
-
-h  = xF(1:100)'*beta;
-beta = xF\y;
+h = y;
+h  = x*beta;
 
 
 

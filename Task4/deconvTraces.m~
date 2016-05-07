@@ -4,7 +4,6 @@ function result = deconvTraces(x,y,kern);
 
 % Exponential kernel
 %kern = exppdf(1:100,10); 
-% Deconvolution + zero padding
-result = deconv([x; zeros(length(kern)-1,1)],kern);
-% Rectification
-result = result.*(result>0);
+
+result1 = deconv([xF; zeros(99,1)],kern);
+result1 = result1.*(result1>0);
