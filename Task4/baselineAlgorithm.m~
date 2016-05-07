@@ -9,5 +9,11 @@ h = deconvTraces(xF,y,kern);
         falsePositives(h,y)
         corr(h,y)
 % 5- Spike Extraction
+s = spikeExtraction(h);
 % 6 - Normalization
 % 7 - Classification
+
+corrResp = ismember(hLocks,yLocks);
+B = logisticReg(s',corrResp)
+p = (sigmoid([B'*[0 s(:,1)]'])>=0.5)';
+

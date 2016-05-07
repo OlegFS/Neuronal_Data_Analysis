@@ -9,5 +9,23 @@ h = deconvTraces(xF,y,kern);
         falsePositives(h,y)
         corr(h,y)
 % 5- Spike Extraction
+s = spikeExtraction(h);
 % 6 - Normalization
 % 7 - Classification
+
+corr = corrResp(h,y);
+
+% Logistic Regression
+B = logisticReg(s',corr)
+%B  = mnrfit(s',categorical(corr))
+for i =1:length(s)
+p(i) = (sigmoid([B'*[0; s(:,i)]])>=0.5)';
+end
+
+% SVM
+SVMStruct = svmtrain(s',corr)
+for i=1:length(s)
+Group(i) = svmclassify(SVMStruct,s(:,i)');
+end
+
+

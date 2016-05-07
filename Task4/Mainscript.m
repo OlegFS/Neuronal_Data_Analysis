@@ -9,9 +9,9 @@ hold on;
 plot(data(1).SpikeTraces(1000:2000)+10)
 
 %%
-x = data(9).GalvoTraces(:);
-y = data(9).SpikeTraces(:);
-fs = data(9).fps;
+x = data(2).GalvoTraces(:);
+y = data(2).SpikeTraces(:);
+fs = data(2).fps;
 
 
 
