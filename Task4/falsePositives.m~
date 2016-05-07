@@ -1,0 +1,18 @@
+ function [FP] = falsePositives(h,y)
+ 
+ [yPeaks,yLocks] = findpeaks(double(y));
+ [hPeaks,hLocks] = findpeaks(h);
+ True = zeros(length(h),1);
+ True(yLocks)=1;
+ Detected = zeros(length(h),1);
+ Detected(hLocks)=1;
+ [X,Y] = perfcurve(Detected,True,1)
+ 
+ 
+ ratio = size(yPeaks)/size(hPeaks);
+ FP = 1-ratio;
+ 
+ 
+ 
+ 
+ 
