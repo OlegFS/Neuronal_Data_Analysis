@@ -2,7 +2,7 @@
 %load Data
 
 load('/Users/olegvinogradov/Documents/MATLAB/Neuronal_Data_Analysis/Task4/TrainingData.mat');
-cd Neuronal_Data_Analysis/Neuronal_Data_Analysis/Task4 
+
 %% Visualization 
 plot(data(1).GalvoTraces(1000:2000)*20); 
 hold on; 
@@ -124,8 +124,15 @@ xF = filterTraces(x, fs);
 
 h  = xF(1:100)'*beta;
 beta = xF\y;
+%% Plot feature scape
 
+for i=1:length(s)
+subplot(5,10,i)
+scatter(s(i,correct==1), s(i+1,correct==1));
+hold on;
+scatter(s(i,correct==0), s(i+1,correct==0));
 
+end
 
 
 

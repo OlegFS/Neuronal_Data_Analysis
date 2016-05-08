@@ -9,9 +9,9 @@ hold on;
 plot(data(1).SpikeTraces(1000:2000)+10)
 
 %%
-x = data(9).GalvoTraces(:);
-y = data(9).SpikeTraces(:);
-fs = data(9).fps;
+x = data(2).GalvoTraces(:);
+y = data(2).SpikeTraces(:);
+fs = data(2).fps;
 
 
 
@@ -73,6 +73,22 @@ RES = [result; result2(end-(length(xF)-length(result)-1):end)];
 corr(y, RES)
 plot(RES); hold on;
 plot(y+4)
+
+%% Deconv OLD
+result1 = deconv([x; zeros(99,1),kern);
+% Rectification
+result1 = result1.*(result1>0); 
+% Deconv fliped signal to get the whole data
+result2 = deconv(flip(x),pinv(kern));
+% Rectification
+result2 = result2.*(result2>0);
+result2 = flip(result2);
+% Decontruct the data
+result = [result1; result2(end-(length(x)-length(result1)-1):end)];
+
+
+
+
 %% Extract features
 X = zeros(20,sum(y>0));
 ind = find(y>0);
@@ -105,10 +121,17 @@ xF = filterTraces(x, fs);
 
 
 %%
-h = y;
-h  = x*beta;
 
+h  = xF(1:100)'*beta;
+beta = xF\y;
+%% Plot feature scape
 
+for i=1:length(s)
+subplot(5,10,i)
+scatter(s(i,correct==1), s(i+1,correct==1));
+hold on;
+scatter(s(i,correct==0), s(i+1,correct==0))
+end
 
 
 

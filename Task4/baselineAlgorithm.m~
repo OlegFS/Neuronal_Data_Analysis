@@ -1,3 +1,8 @@
+
+x = data(2).GalvoTraces(:);
+y = data(2).SpikeTraces(:);
+fs = data(2).fps;
+
 % 1- Filter 
 xF = filterTraces(x, fs);
 % 2- Kernel estimation
@@ -8,12 +13,41 @@ h = deconvTraces(xF,y,kern);
         % ROC curve OR percentage of false positive
         falsePositives(h,y)
         corr(h,y)
-% 5- Spike Extraction
-s = spikeExtraction(h);
+% 5- Spike Extraction - probably leave only f
+[s,G,f] = spikeExtraction(h);
 % 6 - Normalization
 % 7 - Classification
 
-corrResp = ismember(hLocks,yLocks);
-B = logisticReg(s',corrResp)
-p = (sigmoid([B'*[0 s(:,1)]'])>=0.5)';
+correct = corrResp(h,y);
+% SVM
+SVMStruct = svmtrain(f',correct)
+for i=1:length(s)
+ClassSpikes(i) = svmclassify(SVMStruct,f(:,i)');
+end
+% Height extimate
 
+% recontruct the data
+spikeRate = zeros(length(y),1);
+spikeRate(ClassSpikes) = heightExtimate;
+
+
+
+%% Plot the classification result
+%[~,yLocks] = findpeaks(double(y));
+[~,hLocks] = findpeaks(double(h));
+kk = zeros(length(h),1);
+kC = zeros(length(h),1);
+kk(hLocks(ClassSpikes))=1;
+kC(hLocks(correct))=1;
+kk(kk==0)=NaN;
+kC(kC==0)=NaN;
+plot(h(1:100));hold on;
+plot(kk(1:100),'or'); hold on;
+plot(kC(1:100)+1,'ob'); hold on;
+plot(y(1:100)+2)
+
+%% Plot the ROC for SVM
+[~,scores2] = resubPredict(MODEL);
+[X,Y] = perfcurve(correct,scores2(:,2),1)
+plot(X,Y); hold on
+plot([0 1] ,[0 1],'-k')

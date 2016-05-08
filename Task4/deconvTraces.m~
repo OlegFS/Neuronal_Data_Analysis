@@ -1,9 +1,0 @@
-function result = deconvTraces(x,y,kern);
-% x - filtered data
-% y - spike traces
-
-% Exponential kernel
-%kern = exppdf(1:100,10); 
-
-result1 = deconv([xF; zeros(99,1)],kern);
-result1 = result1.*(result1>0);
