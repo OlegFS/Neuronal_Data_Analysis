@@ -1,0 +1,13 @@
+function heightExtimate = predictHeight(h,spikeFlags)
+
+Beta = [0.9389;    1.1678;    0.5782];
+
+peaks = find(spikeFlags>0);
+n = zeros(length(spikeFlags),1);
+
+for i=1:length(peaks)
+Neighbours(i) = sum(spikeFlags(peaks(i)-1:peaks(i)+1)); % try 6
+end
+
+
+X = [ones(legth(h),1) h ]
