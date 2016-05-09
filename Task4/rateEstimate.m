@@ -7,12 +7,12 @@ clear X
 peaks = find(y>0);
 n = zeros(length(y),1);
 n(peaks) = 1;
-
+Neighbours=0;
 for i=1:length(peaks)
-Neighbours(i) = sum(n(peaks(i)-4:peaks(i)+4)); % try 6
+Neighbours(i) = sum(n(peaks(i)-2:peaks(i)+2)); % try 6
 end
 
-X(:,1) = h(peaks);
+X(:,1) = xF(peaks);
 %X = zscore(X);
 X = [ones(length(X),1) X Neighbours'];
 

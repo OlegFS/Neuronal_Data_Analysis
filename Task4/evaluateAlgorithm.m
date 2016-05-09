@@ -26,7 +26,7 @@ h = deconvTraces(xF,y,kern);
 % 6 - Normalization
 % 7 - Classification
 
-[Locs,correct] = corrResp(h,y);
+[Locs,correct] = corrResp(xF,y);
 
 % SVM
 
