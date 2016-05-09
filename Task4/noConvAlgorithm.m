@@ -41,3 +41,10 @@ plot(xF(t1:t2)*10);hold on;
 plot(kk(t1:t2),'or'); hold on;
 plot(kC(t1:t2)+0.5,'ob'); hold on;
 plot((y(t1:t2))+1)
+
+
+%% Plot the spike reconstruction results result
+plot(y(1:300)/2,'-k'); hold on;
+plot(spikeRate(1:300),'-r');
+plot(xF(1:300)*7,'Color',[0.5 0.5 0.5]);
+legend Spikes EstimatedSpikes CaTrace

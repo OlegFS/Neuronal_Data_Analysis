@@ -2,16 +2,18 @@
 [shifts, spikesShifted] = shiftSpikes(data);
 H = {};
 Y = {};
+X = {};
+Correct = {}; 
+XF = {};
 cell = [1 2 4 5 6 7 8 9 10]
 i=1;
 for i=1:length(cell)
-x = data(i).GalvoTraces(:);
+X{i} = data(cell(i)).GalvoTraces(:);
 %y = data(cells(i)).SpikeTraces(:);
-y = spikesShifted{i};
-fs = data(i).fps;
-xF = filterTraces(x, fs);
-[G,f] = spikeExtraction(xF);
-[G,F{i}] = spikeExtraction(H{i});
+Y{i} = spikesShifted{cell(i)};
+fs = data(cell(i)).fps;
+XF{i} = filterTraces(X{i}, fs);
+[G,F{i}] = spikeExtraction(xF{i});
 Correct{i} = corrResp2(xF,y);
 end
 

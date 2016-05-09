@@ -1,4 +1,4 @@
-function [f] = spikeExtraction(h)
+function [f,hLocks] = spikeExtraction(h)
 % s(window,number of waveforms);
 maxWindow = 10;
 [hPeaks,hLocks] = findpeaks(h);

@@ -4,6 +4,8 @@ H = {};
 Y = {};
 X = {};
 Correct = {}; 
+XF = {};
+F = {};
 cell = [1 2 4 5 6 7 8 9 10]
 i=1;
 for i=1:length(cell)
@@ -11,16 +13,18 @@ X{i} = data(cell(i)).GalvoTraces(:);
 %y = data(cells(i)).SpikeTraces(:);
 Y{i} = spikesShifted{cell(i)};
 fs = data(cell(i)).fps;
-xF{i} = filterTraces(X{i}, fs);
-[G,F{i}] = spikeExtraction(xF{i});
-Correct{i} = corrResp2(xF,y);
+XF{i} = filterTraces(X{i}, fs);
+F{i} = spikeExtraction(XF{i});
+Correct{i} = corrResp2(XF{i},Y{i});
 end
 
-for i=1:length(i)
-y = [Y{1}; Y{2}; Y{3}; Y{4}; Y{5}; Y{6} ;Y{7}];
-h = [H{1}; H{2}; H{3}; H{4}; H{5}; H{6} ;H{7}];
 
-end
+y = [Y{1}; Y{2}; Y{3}; Y{4}; Y{5}; Y{6} ;Y{7}; Y{8}; Y{9}];
+xF = [XF{1}; XF{2}; XF{3}; XF{4}; XF{5}; XF{6} ;XF{7}; XF{8}; XF{9}];
+f = [F{1} F{2} F{3} F{4} F{5} F{6} F{7} F{8} F{9}];
+correct = [Correct{1}; Correct{2}; Correct{3}; Correct{4};...
+    Correct{5}; Correct{6} ;Correct{7};  Correct{8}; Correct{9}];
+
 
 SVMStruct = svmtrain(f',correct,'kernel_function','rbf')
 for i=1:length(f)
