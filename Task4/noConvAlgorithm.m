@@ -21,7 +21,7 @@ spikeFlag(xLocks(logical(ClassSpikes)))=1;
 heightExtimate = predictHeight(xF(xLocks(logical(ClassSpikes))),spikeFlag);
 % recontruct the data
 spikeRate = zeros(length(y),1);
-spikeRate(spikeFlag) = heightExtimate;
+spikeRate(logical(spikeFlag)) = heightExtimate;
 %corr(spikeRate,y)
 
 
@@ -44,7 +44,9 @@ plot((y(t1:t2))+1)
 
 
 %% Plot the spike reconstruction results result
-plot(y(1:300)/2,'-k'); hold on;
-plot(spikeRate(1:300),'-r');
+plot(y(1:300)/2,'Color',[1 0.78 0.90 ],'linewidth',2); hold on;
+plot(spikeRate(1:300),'-k','linewidth',1);
 plot(xF(1:300)*7,'Color',[0.5 0.5 0.5]);
-legend Spikes EstimatedSpikes CaTrace
+legend RealSpikes EstimatedSpikes CaTrace
+title('Algorithm output')
+

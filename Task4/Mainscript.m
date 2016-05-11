@@ -9,9 +9,9 @@ hold on;
 plot(data(1).SpikeTraces(1000:2000)+10)
 
 %%
-x = data(2).GalvoTraces(:);
-y = data(2).SpikeTraces(:);
-fs = data(2).fps;
+trace = data(1).GalvoTraces(:);
+y = data(1).SpikeTraces(:);
+fs = data(1).fps;
 
 
 
@@ -134,6 +134,19 @@ scatter(s(i,correct==0), s(i+1,correct==0));
 
 end
 
+
+%%
+%% Extract features
+f = f(1:16,:);
+Fe = zeros(84,length(f));
+Fe(1,:)= moment(f,1);
+Fe(2,:)=moment(f,2);
+Fe(3,:)=moment(f,3);
+Fe(4,:)=moment(f,4);
+for i=1:length(f)
+SW(i,:)= reshape(swt(f(:,i),4,'haar'),1,5*16);
+end
+Fe(6:85,:) = SW';
 
 
 

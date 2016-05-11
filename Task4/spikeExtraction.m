@@ -1,6 +1,6 @@
 function [f,hLocks] = spikeExtraction(h)
 % s(window,number of waveforms);
-maxWindow = 10;
+maxWindow = 8;
 [hPeaks,hLocks] = findpeaks(h);
 [hMins,hMinLocks] = findpeaks(-h);
 
