@@ -28,8 +28,8 @@ if (peaks(end)+3)<length(spikeFlags)
 
     p2=0;
 else
-    pp = find((peaks+3)>length(spikeFlags));
-    p2 = pp(end)+1;
+    pp = find((peaks+3)<length(spikeFlags));
+    p2 = length(peaks)-pp(end);
 end
 
 for i=1+p1:length(peaks)-p2;
