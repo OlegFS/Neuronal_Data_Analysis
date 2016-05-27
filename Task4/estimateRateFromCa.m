@@ -16,6 +16,8 @@ xF = filterTraces(trace, fs);
 Fe = extractWFeatures(f); 
 % 4. Predict by SVM
 
+% 4. train classifier
+load SVMStruct
 
 for i=1:length(f)
 ClassSpikes(i) = predict(SVM,Fe(:,i)');
@@ -32,6 +34,7 @@ heightExtimate = predictHeight(xF(xLocks(logical(ClassSpikes))),spikeFlag);
 inferredRate = zeros(length(xF),1);
 %inferredRate(logical(spikeFlag)) = xPeak(logical(ClassSpikes))*10;
 inferredRate(logical(spikeFlag)) =  heightExtimate*10;
+inferredRate(logical(spikeFlag)) = heightExtimate;
 
 inferredRate(inferredRate<=0.5) = ceil(inferredRate(inferredRate<=0.5)); % round values
 inferredRate(inferredRate>0.5) = round(inferredRate(inferredRate>0.5));
