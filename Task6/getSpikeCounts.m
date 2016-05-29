@@ -45,6 +45,7 @@ counts = reshape(counts,[nTrialsPerDir,nDir]);  % reshape as 16x11 vector
 
 
 % plot
+%{
 figure;
 h1 = plot(counts','.k');
 hold on
@@ -59,5 +60,5 @@ f = fitCos(uniqueDirs, counts);
 h3 = plot(f,'-b');
 legend([h1(1),h2,h3],'All trials','Average count','Fitted cosine');
 hold on
-
+%}
 end

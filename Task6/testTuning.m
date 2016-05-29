@@ -33,9 +33,9 @@ p = length(qdistr(qdistr>q))/nIter;
 
 % plot null of distribution
 % plot(1:nIter, qdistr, 'o');
-figure;
-histogram(qdistr,'Normalization','probability','DisplayStyle','stairs')
-hold on
+%figure;
+%histogram(qdistr,'Normalization','probability','DisplayStyle','stairs')
+%hold on
 plot([q q],[0 0.2],'-r')
 
 end
