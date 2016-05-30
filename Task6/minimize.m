@@ -77,6 +77,7 @@ while i < abs(length)                                      % while not finished
   i = i + (length>0);                                      % count iterations?!
 
   X0 = X; F0 = f0; dF0 = df0;                   % make a copy of current values
+ 
   if length>0, M = MAX; else M = min(MAX, -length-i); end
 
   while 1                             % keep extrapolating as long as necessary
@@ -155,4 +156,5 @@ while i < abs(length)                                      % while not finished
     ls_failed = 1;                                    % this line search failed
   end
 end
+disp(i);
 %fprintf('\n');

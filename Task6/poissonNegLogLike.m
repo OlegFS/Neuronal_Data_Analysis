@@ -22,15 +22,15 @@ phi = p(4);
 
 y = exp(alpha+k*(cos(2*(theta-phi))-1)+v*(cos(theta-phi)-1));
 %x = mean(counts);
-x = mean(counts);
+x = mean(counts)';
 % Poisson loglikelihood
-f =-sum(sum(x'.*log(y))-y);
+f = -sum((x'*log(y))-y);
 
-df(:,1) = -sum(x-y');
-df(:,2) = -sum(x*(cos(2*(theta-phi))-1) - ((cos(2*(theta-phi))-1).*y));
-df(:,3) = -sum(x*(cos(theta-phi)-1) - ((cos(theta-phi)-1)).*y);
+df(:,1) = -sum(sum(x)-y);
+df(:,2) = -sum(x'*(cos(2*(theta-phi))-1) - ((cos(2*(theta-phi))-1).*y));
+df(:,3) = -sum(x'*(cos(theta-phi)-1) - ((cos(theta-phi)-1)).*y);
 %df(4) = sum(x*(-2*k*sin(2*(theta-phi)) - v*sin(theta-phi) -...
- %   ((2*k*sin(2*(theta-phi))- v*(sin(theta-phi))))).*y);
-df(:,4)= -sum(x*(2*k*sin(2*(theta-phi)) - v*sin(phi-theta)) -(2*k*sin(2*(theta-phi))-v*sin(phi-theta)).* y) ;
+%    ((2*k*sin(2*(theta-phi))- v*(sin(theta-phi))))).*y);
+df(:,4)= -sum(x'*(2*k*sin(2*(theta-phi)) - v*sin(phi-theta)) -(2*k*sin(2*(theta-phi))-v*sin(phi-theta)).* y) ;
  
 df = df';

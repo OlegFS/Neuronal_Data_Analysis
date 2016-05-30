@@ -36,6 +36,6 @@ p = length(qdistr(qdistr>q))/nIter;
 %figure;
 %histogram(qdistr,'Normalization','probability','DisplayStyle','stairs')
 %hold on
-plot([q q],[0 0.2],'-r')
+%plot([q q],[0 0.2],'-r')
 
 end
