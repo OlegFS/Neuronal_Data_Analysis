@@ -1,4 +1,4 @@
-function params = fitML(dirs, counts)
+function params = fitML(dirs, counts,X0);
 % Fit tuning curve using maximum likelihood and Poisson noise model.
 %   params = fitML(dirs, counts) fits a parametric tuning curve using
 %   maximum liklihood and a Poisson noise model and returns the fitted
@@ -9,9 +9,9 @@ function params = fitML(dirs, counts)
 %       dirs        vector of directions (#directions x 1)
 
 % X0 = [pi 10 0.5 4.5]';    % initialize parameters
-X0 = [pi 1 1 pi]';
+%X0 = [pi 1 1 pi]';
+X0 = rand(4,1);
 
-[X, fX, i] = minimize(X0, 'poissonNegLogLike', 100, counts, dirs);
+[X, fX, i] = minimize(X0, 'poissonNegLogLike1', 1000000, counts, dirs)
 params = X;
 
-end

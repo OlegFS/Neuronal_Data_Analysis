@@ -11,10 +11,10 @@ function params = fitML(dirs, counts)
 %k = p(2);
 %v = p(3);
 %phi = p(4);
-p1 = rand(4,1);
-%p1(4) = pi;
-%p1 = [ 0.5758    8.1856   -0.4844    3.3641];
-[params, ~, ~] = minimize(p1,'poissonNegLogLike',400,counts,dirs);
+%p1 = rand(4,1);
+p1 = [pi 1 1 pi];
+
+[params, ~, ~] = minimize(p1','poissonNegLogLike',1000,counts,dirs);
 
 %options = optimset('GradObj', 'on', 'MaxIter', 1000);
 %params = fminunc(@(p)(poissonNegLogLike(p, counts, dirs)),p1,options);

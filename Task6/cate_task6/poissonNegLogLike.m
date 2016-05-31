@@ -23,8 +23,10 @@ alpha = p(4);
 theta = deg2rad(theta);
 
 lambda = exp(alpha + kappa*(cos(2*(theta-phi))-1) + nu*(cos(theta-phi)-1));
-k = mean(counts)';
+k = sum(counts)';
+
 logLike = -sum(sum(k.*log(lambda)) - lambda);
+
 gradient(1) = -sum(k'*(2*kappa*sin(2*(theta-phi)) - nu*sin(phi-theta)) -(2*kappa*sin(2*(theta-phi))-nu*sin(phi-theta)).*exp(alpha + kappa*(cos(2*(theta-phi))-1) + nu*(cos(theta-phi)-1)));
 gradient(2) = -sum(k'*(cos(2*(theta-phi))-1) - ((cos(2*(theta-phi))-1).*exp(alpha + kappa*(cos(2*(theta-phi))-1) + nu*(cos(theta-phi)-1))));
 gradient(3) = -sum(k'*(cos(theta-phi)-1) - ((cos(theta-phi)-1)).*exp(alpha + kappa*(cos(2*(theta-phi))-1) + nu*(cos(theta-phi)-1)));
