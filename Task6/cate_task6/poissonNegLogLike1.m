@@ -36,7 +36,7 @@ logLike = -sum(sum(logLike));
 gradient = zeros(11,16,4);
 for i =1:length(k)
 gradient(:,i,1) =k(:,i).*(2*kappa*sin(2*(theta(i)-phi)) - nu*sin(phi-theta(i))) -(2*kappa*sin(2*(theta(i)-phi))-nu*sin(phi-theta(i)))*lambda(i);
-gradient(:,i,2) = k(:,i).*(cos(2*(theta(i)-phi))-1) - ((cos(2*(theta(i)-phi))-1)*lambda(i));
+gradient(:,i,2) = 
 gradient(:,i,3) = k(:,i).*(cos(theta(i)-phi)-1) - ((cos(theta(i)-phi)-1))*lambda(i);
 gradient(:,i,4) =k(:,i)-lambda(i);
 end
