@@ -23,7 +23,8 @@
 \bibliographystyle{jneurosci}
 
 \title{Lecture 6: Tuning curves and population analysis}
-\author{Caterina Trainito, Oleg Vinogradov}
+\author{Caterina Trainito, Oleg Vin\\
+ogradov}
 \date{May 24, 2016}
 
 \begin{document}
@@ -58,15 +59,8 @@ f(\theta) = a+ \beta cos(\theta - \phi)
 Alternatively, the same cosine tuning curve fit can be implemented by transferring the problem into the frequency domain. The tuning curve function is then given by the linear combination of the DC component and the second Fourier component: \\ \\
 % EQUATION LINEAR MODEL IN FOURIER DOMAIN
 \begin{equation*}
-f_k = \langle m \rangle + \bar{q} v_k + q \bar{v_k} 
+f = q_0+q_2v_2+ \bar{q_2}\bar{v_2}
 \end{equation*}
-Where $q$ is a projection of the mean spike count of each neuron $m = \frac{1}{n} \sum_j x_{jk}$ on a complex exponential $v = 1/4\ exp \{2i \theta\} $
-\paragraph{Linear-nonlinear model.} By adding an exponential nonlinearity, the L-NL model yields tuning curves that follows a von Mises distribution, or circular Gaussian. The full von Mises model, which includes a coefficient for the first harmonic, is given by
-\begin{equation*}
-f(\theta) = \exp\{ \alpha+\kappa(cos(2(\theta-\phi))-1)+\nu(cos(\theta-\phi)-1)\}
-\end{equation*}
-
-Where $\theta$ - is an angle and  $\alpha, \kappa, \nu, \phi.$ are four parameters of a distribution\\
 This model, however, assumes Gaussian i.i.d. error terms. Taking into account the physiological properties of neuronal firing, the fit can be improved by modelling the noise as Poisson distributed. This imposes the constraint that the estimated spike counts be non-negative, and, importantly, reflects the significant heteroscedasticity of the data.
 
 
@@ -84,7 +78,23 @@ The resulting tuning curve is given by \\
 % FORMULA OF Fk.
 
 % Oleg please check if the above explanation makes any sense. My brain is fried from all the comic sans on Butthole's slides.
+\begin{equation*}
+f_k = \langle m \rangle + \bar{q} v_k + q \bar{v_k} 
+\end{equation*}
+Where $q$ is a projection of the mean spike count of each neuron $m = \frac{1}{n} \sum_j x_{jk}$ on a complex exponential $v = 1/4\ exp \{2i \theta\} $
+\begin{equation*}
+q = m^Tv
+\end{equation*}
+And preferred oriention is given as 
+\begin{equation*}
+\phi = arg(q)
+\end{equation*}
+\paragraph{Linear-nonlinear model.} By adding an exponential nonlinearity, the L-NL model yields tuning curves that follows a von Mises distribution, or circular Gaussian. The full von Mises model, which includes a coefficient for the first harmonic, is given by
+\begin{equation*}
+f(\theta) = \exp\{ \alpha+\kappa(cos(2(\theta-\phi))-1)+\nu(cos(\theta-\phi)-1)\}
+\end{equation*}
 
+Where $\theta$ - is an angle and  $\alpha, \kappa, \nu, \phi.$ are four parameters of a distribution\\
 We then implemented the von Mises model assuming Gaussian noise. The two-cycle von Mises distribution was fitted to spike count data from all trials by computing the least squares solution. \\ \\
 % PUT FORMULA OF LEAST SQUARES HERE?
 To fit the von Mises model within a Poisson noise model, we employed maximum likelihood estimation. 
