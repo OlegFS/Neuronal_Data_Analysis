@@ -23,8 +23,7 @@
 \bibliographystyle{jneurosci}
 
 \title{Lecture 6: Tuning curves and population analysis}
-\author{Caterina Trainito, Oleg Vin\\
-ogradov}
+\author{Caterina Trainito, Oleg Vinogradov}
 \date{May 24, 2016}
 
 \begin{document}
@@ -33,7 +32,7 @@ ogradov}
 
 \section*{Introduction}
 
-Most neurons in V1, including simple cells and complex cells, are selective for stimulus orientation or direction of motion (REF). These neurons respond preferentially to stimuli with a specific orientation, while their firing probability drops off with distance from the preferred range. At the population level, these neurons represent all possible orientations with overlapping tuning curves. This coding scheme maximizes information content (REF: MALLOT?) and thus allows for the highly sensitive orientation discrimination that characterizes the primate visual system (REF). \\
+Most neurons in V1, including simple cells and complex cells, are selective for stimulus orientation or direction of motion \cite{hubel1962receptive}. These neurons respond preferentially to stimuli with a specific orientation, while their firing probability drops off with distance from the preferred range. At the population level, these neurons represent all possible orientations with overlapping tuning curves. This coding scheme maximizes information content \cite{snippe1996parameter} and thus allows for the highly sensitive edge detection \cite{marr1980theory}. \\
 
 To explore the properties of orientation tuning, we analysed spike trains from monkey V1 cells in response to drifting gratings with varying direction of motion. After appropriate visualization of the data, we used several approaches to analyse individual neurons' orientation tuning and compare response properties across cells.
 \paragraph{Linear model.} Since orientation is a circular variable, it can be represented as a vector on the unit circle defined by its trigonometric components. Firing rate can then be modelled as a linear function of the reparametrized stimulus orientation: \\ \\
@@ -61,7 +60,7 @@ Alternatively, the same cosine tuning curve fit can be implemented by transferri
 \begin{equation*}
 f = q_0+q_2v_2+ \bar{q_2}\bar{v_2}
 \end{equation*}
-This model, however, assumes Gaussian i.i.d. error terms. Taking into account the physiological properties of neuronal firing, the fit can be improved by modelling the noise as Poisson distributed. This imposes the constraint that the estimated spike counts be non-negative, and, importantly, reflects the significant heteroscedasticity of the data.
+This model, however, assumes Gaussian i.i.d. error terms. Taking into account the physiological properties of neuronal firing, the fit can be improved by modelling the noise as Poisson distributed \cite{softky1993highly}. This imposes the constraint that the estimated spike counts be non-negative, and, importantly, reflects the significant heteroscedasticity of the data.
 
 
 \section*{Methods}
@@ -70,49 +69,39 @@ We analysed extracellularly recorded spike trains of 41 units from monkey V1. Ac
 
 \paragraph{Data visualization.} For a selection of neurons, we visualized the average spike count for each direction of motion in a linear plot. As a measure of dispersion, we included the individual counts of all 11 trials per condition.
 
-\paragraph{Tuning curve fitting.} To roughly assess the periodicity of the neurons' orientation tuning, we fit a cosine tuning curve to the spike count data of each individual neuron. We took the Fourier transform of the data (??????) by projecting (up to the norm) the vector of mean counts onto a complex exponential with two cycles, representing the two expected peaks. This is equivalent to taking the inner product \\ \\
-% PROJECTION FORMULA
-with m = ...,  v = ... . \\ \\
-% FORMULAS OF MEAN M AND COMPLEX EXPONENTIAL V.
-The resulting tuning curve is given by \\
-% FORMULA OF Fk.
-
-% Oleg please check if the above explanation makes any sense. My brain is fried from all the comic sans on Butthole's slides.
-\begin{equation*}
-f_k = \langle m \rangle + \bar{q} v_k + q \bar{v_k} 
-\end{equation*}
-Where $q$ is a projection of the mean spike count of each neuron $m = \frac{1}{n} \sum_j x_{jk}$ on a complex exponential $v = 1/4\ exp \{2i \theta\} $
+\paragraph{Tuning curve fitting.} To roughly assess the periodicity of the neurons' orientation tuning, we fit a cosine tuning curve to the spike count data of each individual neuron. We took the Fourier transform of the data by projecting (up to the norm) the vector of mean counts onto a complex exponential with two cycles, representing the two expected peaks. This is equivalent to taking the inner product
 \begin{equation*}
 q = m^Tv
 \end{equation*}
-And preferred oriention is given as 
+where $q$ is a projection of the mean spike count of each neuron $m = \frac{1}{n} \sum_j x_{jk}$ on a complex exponential $v = 1/4\ exp \{2i \theta\} $. \\
+The resulting tuning curve is given by
 \begin{equation*}
-\phi = arg(q)
+f_k = \langle m \rangle + \bar{q} v_k + q \bar{v_k} 
 \end{equation*}
+with preferred oriention $\phi = \arg(q)$.
+
 \paragraph{Linear-nonlinear model.} By adding an exponential nonlinearity, the L-NL model yields tuning curves that follows a von Mises distribution, or circular Gaussian. The full von Mises model, which includes a coefficient for the first harmonic, is given by
 \begin{equation*}
-f(\theta) = \exp\{ \alpha+\kappa(cos(2(\theta-\phi))-1)+\nu(cos(\theta-\phi)-1)\}
+f(\theta) = \exp\{ \alpha+\kappa(\cos(2(\theta-\phi))-1)+\nu(\cos(\theta-\phi)-1)\}
 \end{equation*}
+where $\theta$ is the direction and  $\alpha, \kappa, \nu, \phi$ are four parameters of the distribution. \\
 
-Where $\theta$ - is an angle and  $\alpha, \kappa, \nu, \phi.$ are four parameters of a distribution\\
-We then implemented the von Mises model assuming Gaussian noise. The two-cycle von Mises distribution was fitted to spike count data from all trials by computing the least squares solution. \\ \\
-% PUT FORMULA OF LEAST SQUARES HERE?
+We then implemented the von Mises model assuming Gaussian noise. The two-cycle von Mises distribution was fitted to spike count data from all trials by computing the least squares solution. \\
 To fit the von Mises model within a Poisson noise model, we employed maximum likelihood estimation. 
 \begin{equation*}
-\mathcal{L}(k,\lambda) = k_{ij}log(\lambda_j)-\lambda_j
+\mathcal{L}(k,\lambda) = k_{ij}\log(\lambda_j)-\lambda_j
 \end{equation*}
 As a cost function we calculated the negative log-likelihood of the Poisson distribution summed over all trials: 
 % NEGLOGLIKE FORMULA
 \begin{equation}
 E = - \sum_n \mathcal{L}(k,\lambda)
 \end{equation}
-where the mean parameter $\lambda$ is the estimated spike count given by the von Mises fit $\lambda = f(\theta)$. We minimized the negative log-likelihood with respect to the four parameters of the von Mises function by computing the respective gradients.
-% DON'T KNOW IF WE SHOULD PUT FORMULAS OF GRADIENTS.
+where the mean parameter $\lambda$ is the estimated spike count given by the von Mises fit, $\lambda = f(\theta)$. We minimized the negative log-likelihood with respect to the four parameters of the von Mises function by computing the respective gradients:
 \begin{align*}
  \frac{\partial L}{\partial \alpha} = &k - \lambda  \\
- \frac{\partial L}{\partial \kappa} = &k(cos(2(\theta-\phi))-1) - ((cos(2(theta-phi))-1) \lambda \\
- \frac{\partial L}{\partial \nu} = &k(cos(\theta-\phi)-1) - ((cos(\theta-\phi)-1)) \lambda \\
- \frac{\partial L}{\partial \phi} =  & k(2\kappa sin(2(\theta-\phi)) - \nu sin(\phi-\theta)) -(2\kappa sin(2(\theta-\phi))- \nu sin(\phi-\theta)) \lambda
+ \frac{\partial L}{\partial \kappa} = &k(\cos(2(\theta-\phi))-1) - ((\cos(2(\theta-\phi))-1) \lambda \\
+ \frac{\partial L}{\partial \nu} = &k(\cos(\theta-\phi)-1) - ((\cos(\theta-\phi)-1)) \lambda \\
+ \frac{\partial L}{\partial \phi} =  & k(2\kappa \sin(2(\theta-\phi)) - \nu \sin(\phi-\theta)) -(2\kappa \sin(2(\theta-\phi))- \nu \sin(\phi-\theta)) \lambda
 \end{align*}
 \paragraph{Test for orientation selectivity.} Within the linear Fourier model, we implemented a permutation test to assess statistically the cells' orientation selectivity. A total of 1000 iterations were performed. In each iteration, we randomly permuted all elements of the spike count matrix, equivalent to shuffling the trials' condition labels. From each shuffled dataset we computed the test statistic $|q|$, the modulus of the second Fourier component. The distribution of all calculated values of $|q|$ is an estimate of the null distribution for the test, i.e. the sampling distribution under the null hypothesis of random firing (no orientation tuning). For each cell, we then computed a p-value as the proportion of $|q|$ values that are equal to or more extreme than the observed value for that cell. Cells with p-values that cross the chosen significance threshold of 0.01 were classified as orientation-selective.
 
@@ -124,7 +113,7 @@ where the mean parameter $\lambda$ is the estimated spike count given by the von
 \paragraph{Tuning curve fitting.}
 % ONE PLOT WITH ALL THE FITS FOR AN ORIENTATION-SELECTIVE CELL (E.G. N.28).
 
-\paragraph{Test for orientation selectivity.} Running the test on all cells of our dataset, x out of x cells were found to be tuned to orientation at an alpha level of 1\%. Fig. x shows two example null distributions of $|q|$ computed for cells n. x (orientation-selective) and x (not orientation-selective).
+\paragraph{Test for orientation selectivity.} Running the test on all cells of our dataset, 34 out of 41 cells were found to be tuned to orientation at an alpha level of 1\%. Fig. x shows two example null distributions of $|q|$ computed for cells 29 (orientation-selective) and x (not orientation-selective).
 % 2 HISTOGRAMS OF PERMUTATION TEST DISTRIBUTION: ONE FOR ORIENTATION-TUNED CELL AND ONE FOR NON-TUNED CELL.
 
  
@@ -132,14 +121,14 @@ where the mean parameter $\lambda$ is the estimated spike count given by the von
 
 Estimating a good model of tuning curves is essential for judging V1 neurons' degree of orientation and motion direction selectivity. We first fitted a simple sinusoidal function to the firing rates for each stimulus condition. The cosine captures the periodicity of responses, whereby orientation-selective neurons shows two peak responses to the preferred direction $\phi$ and to $\phi \pm \pi$ (in both conditions, the stimulus has the same orientation). \\
 
-However, one simple cosine tuning curve cannot describe the behavior of cells that are selective to motion direction as well as orientation. These neurons show asymmetric peaks at $\phi$ and to $\phi \pm \pi$, as these conditions correspond to stimuli with opposite directions of motion. To capture this property, we modelled responses with a von Mises distribution with two harmonics (?). The exponential nonlinearity also rectified the data, so that estimated spike counts could take positive values only. \\
+However, one simple cosine tuning curve cannot describe the behavior of cells that are selective to motion direction as well as orientation. These neurons show asymmetric peaks at $\phi$ and to $\phi \pm \pi$, as these conditions correspond to stimuli with opposite directions of motion. To capture this property, we modelled responses with a von Mises distribution with two harmonics. The exponential nonlinearity also rectified the data, so that estimated spike counts could take positive values only. \\
 
 The von Mises model yielded a good fit, but its theoretical assumptions are not well-matched to the characteristics of neural spike count data. Besides being non-negative, spike counts are discrete and heteroscedastic, meaning that errors are not identically and independently distributed as the Gaussian model would require. Specifically, the variance of spike counts is often proportional to their mean. We therefore included these constraints into the model by assuming noise with Poisson shape. The resulting fit, although usually very close to the Gaussian-noise fit, captured the inter-trial variability more adequately, thus providing a better model for the tuning curve. \\
 
 - OPTIONAL: why u no circular variance? (I have notes on this, might be interesting)
 
 
-\bibliography{bibl}
+\bibliography{Report.bib}
 
 
 \end{document}
