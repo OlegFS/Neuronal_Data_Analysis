@@ -1,0 +1,26 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Hubel and Wiesel}{1962}]{hubel1962receptive}
+Hubel DH, Wiesel TN (1962)
+\newblock Receptive fields, binocular interaction and functional architecture
+  in the cat's visual cortex.
+\newblock {\em The Journal of physiology}~160:\mbox{106--154}.
+
+\bibitem[\protect\citeauthoryear{Marr and Hildreth}{1980}]{marr1980theory}
+Marr D, Hildreth E (1980)
+\newblock Theory of edge detection.
+\newblock {\em Proceedings of the Royal Society of London B: Biological
+  Sciences}~207:\mbox{187--217}.
+
+\bibitem[\protect\citeauthoryear{Snippe}{1996}]{snippe1996parameter}
+Snippe HP (1996)
+\newblock Parameter extraction from population codes: A critical assessment.
+\newblock {\em Neural Computation}~8:\mbox{511--529}.
+
+\bibitem[\protect\citeauthoryear{Softky and Koch}{1993}]{softky1993highly}
+Softky WR, Koch C (1993)
+\newblock The highly irregular firing of cortical cells is inconsistent with
+  temporal integration of random epsps.
+\newblock {\em The Journal of Neuroscience}~13:\mbox{334--350}.
+
+\end{thebibliography}
