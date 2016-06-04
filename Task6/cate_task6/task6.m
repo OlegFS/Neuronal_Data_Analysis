@@ -8,7 +8,7 @@ n = numel(spikeTimes);
 p = zeros(1, n);
 for i = 1 : n
     counts = getSpikeCounts(spikeTimes{i}, stimulusOnset, direction, stimulusDuration, i);
-%     p(i) = testTuning(dirs, counts);
+   p(i) = testTuning(dirs, counts);
 end
 fprintf('%d of %d cells are tuned at p < 0.01\n', sum(p < 0.01), n)
 
@@ -20,7 +20,7 @@ fprintf('%d of %d cells are tuned at p < 0.01\n', sum(p < 0.01), n)
 % clear all
 load NDA_task6_data
 load NDA_stimulus
-nCell = 18;
+nCell = 28;
 
 dirs = unique(direction);
 n = numel(spikeTimes);
@@ -39,7 +39,7 @@ y = tuningCurve(estPar, theta);
 % [logLike, gradient] = poissonNegLogLike(estPar, counts, dirs);
 paramsPoiss = fitML(dirs, counts);
 yPoiss = tuningCurve(paramsPoiss, dirs);
-checkgrad('poissonNegLogLike', paramsPoiss, 1e-5, counts, dirs)
+%checkgrad('poissonNegLogLike', paramsPoiss, 1e-5, counts, dirs)
 
 % plots
 figure;
@@ -53,7 +53,7 @@ xlabel('Direction of motion (degrees)');
 ylabel('Spike count');
 h3 = plot(f,'-b');
 h4 = plot(linspace(1,length(dirs),length(y)), y, '-g');
-h5 = plot(linspace(1,length(dirs),length(yPoiss)), yPoiss/15, '-m');
+h5 = plot(linspace(1,length(dirs),length(yPoiss)), yPoiss, '-m');
 legend([h1(1),h2,h3,h4,h5],'All trials','Average count','Fitted cosine',...
     'Least squares von Mises fit','Poisson noise model');
 

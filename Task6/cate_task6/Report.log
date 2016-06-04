@@ -1,7 +1,6 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.31)  2 JUN 2016 23:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.1)  4 JUN 2016 23:15
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
 **Report.tex
 (./Report.tex
@@ -257,29 +256,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 36--37
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--59
+
+ []
+
 [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 87--89
+Underfull \hbox (badness 10000) in paragraph at lines 89--91
 
  []
 
 [2] [3] <fitCosCell1.png, id=22, 562.1pt x 421.575pt>
 File: fitCosCell1.png Graphic file (type png)
  <use fitCosCell1.png>
-Package pdftex.def Info: fitCosCell1.png used on input line 117.
+Package pdftex.def Info: fitCosCell1.png used on input line 119.
 (pdftex.def)             Requested size: 379.3754pt x 284.52756pt.
 
 <fitCos.png, id=23, 562.1pt x 421.575pt>
 File: fitCos.png Graphic file (type png)
  <use fitCos.png>
-Package pdftex.def Info: fitCos.png used on input line 124.
+Package pdftex.def Info: fitCos.png used on input line 126.
 (pdftex.def)             Requested size: 379.3754pt x 284.52756pt.
 
 <fitVonMises.png, id=24, 562.1pt x 421.575pt>
 File: fitVonMises.png Graphic file (type png)
  <use fitVonMises.png>
-Package pdftex.def Info: fitVonMises.png used on input line 131.
+Package pdftex.def Info: fitVonMises.png used on input line 133.
 (pdftex.def)             Requested size: 379.3754pt x 284.52756pt.
 
 
@@ -289,53 +293,59 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <permplot.png, id=28, 562.1pt x 421.575pt>
 File: permplot.png Graphic file (type png)
  <use permplot.png>
-Package pdftex.def Info: permplot.png used on input line 140.
+Package pdftex.def Info: permplot.png used on input line 142.
 (pdftex.def)             Requested size: 265.55934pt x 199.16928pt.
 
 <permplot1.png, id=29, 562.1pt x 421.575pt>
 File: permplot1.png Graphic file (type png)
  <use permplot1.png>
-Package pdftex.def Info: permplot1.png used on input line 147.
+Package pdftex.def Info: permplot1.png used on input line 149.
 (pdftex.def)             Requested size: 265.55934pt x 199.16928pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--156
-
- []
-
-[5 <./fitVonMises.png (PNG copy)> <./permplot.png (PNG copy)>]
 Underfull \hbox (badness 10000) in paragraph at lines 157--158
 
  []
 
-[6 <./permplot1.png (PNG copy)>] (./Report.bbl) [7] (./Report.aux) ) 
+[5 <./fitVonMises.png (PNG copy)> <./permplot.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 159--160
+
+ []
+
+[6 <./permplot1.png (PNG copy)>] <BIG1.png, id=36, 1027.84pt x 770.88pt>
+File: BIG1.png Graphic file (type png)
+
+<use BIG1.png>
+Package pdftex.def Info: BIG1.png used on input line 167.
+(pdftex.def)             Requested size: 455.24408pt x 341.43492pt.
+ (./Report.bbl) [7 <./BIG1.png>] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
- 3631 strings out of 493089
- 53827 string characters out of 6134841
- 114916 words of memory out of 5000000
- 7051 multiletter control sequences out of 15000+600000
+ 3636 strings out of 493089
+ 53886 string characters out of 6134842
+ 115916 words of memory out of 5000000
+ 7055 multiletter control sequences out of 15000+600000
  11542 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,13n,38p,956b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local
-/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
-live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texli
-ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/201
-5/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on Report.pdf (7 pages, 235989 bytes).
+ 38i,14n,38p,956b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2015/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmti10.pfb>
+Output written on Report.pdf (7 pages, 362602 bytes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
- 51 compressed objects within 1 object stream
+ 80 PDF objects out of 1000 (max. 8388607)
+ 52 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

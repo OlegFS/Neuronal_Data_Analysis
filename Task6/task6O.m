@@ -7,7 +7,7 @@ dirs = unique(direction);
 n = numel(spikeTimes);
 p = zeros(1, n);
 
-for i = 41
+for i = 1:n
     counts = getSpikeCounts(spikeTimes{i}, stimulusOnset, direction, stimulusDuration,i);
      [p(i),q, qdistr] = testTuning(dirs, counts);
 end

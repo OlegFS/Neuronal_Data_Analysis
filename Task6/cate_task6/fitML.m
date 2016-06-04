@@ -12,6 +12,7 @@ function params = fitML(dirs, counts,X0);
 %X0 = [pi 1 1 pi]';
 X0 = rand(4,1);
 
-[X, fX, i] = minimize(X0, 'poissonNegLogLike1', 1000000, counts, dirs)
-params = X;
+[params, fX, i] = minimize(X0, 'poissonNegLogLike1', 10000, counts, dirs);
+
+
 
