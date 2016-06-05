@@ -33,7 +33,7 @@
 
 \section*{Introduction}
 
-Most neurons in V1, including simple cells and complex cells, are selective for stimulus orientation or direction of motion \cite{hubel1962receptive}. These neurons respond preferentially to stimuli with a specific orientation, while their firing probability drops off with distance from the preferred range. At the population level, these neurons represent all possible orientations with overlapping tuning curves. This coding scheme maximizes information content \cite{snippe1996parameter} and thus allows for the highly sensitive edge detection \cite{marr1980theory}. \\
+Most neurons in V1, including simple cells and complex cells, are selective for stimulus orientation or direction of motion \cite{hubel1962receptive}. These neurons respond preferentially to stimuli with a specific orientation, while their firing probability drops off with distance from the preferred range. At the population level, these neurons represent all possible orientations with overlapping tuning curves. This coding scheme maximizes information content \cite{snippe1996parameter} and thus allows for highly sensitive edge detection \cite{marr1980theory}. \\
 
 To explore the properties of orientation tuning, we analysed spike trains from monkey V1 cells in response to drifting gratings with varying direction of motion. After appropriate visualization of the data, we used several approaches to analyse individual neurons' orientation tuning and compare response properties across cells.
 \paragraph{Linear model.} Since orientation is a circular variable, it can be represented as a vector on the unit circle defined by its trigonometric components. Firing rate can then be modelled as a linear function of the reparametrized stimulus orientation:
@@ -43,25 +43,25 @@ f(x) = a+b^Tx
 where 
 \begin{align*}
 b = \beta \begin{bmatrix}
-cos (\phi) \\  sin (\phi )
+\cos (\phi) \\  \sin (\phi )
  \end{bmatrix}  
  \hspace{5mm}
  x =  \begin{bmatrix}
-cos (\theta) \\
-  sin (\theta)
+\cos (\theta) \\
+  \sin (\theta)
  \end{bmatrix} 
 \end{align*}
-which is equal to 
+which is equivalent to 
 \begin{equation*}
-f(\theta) = a+ \beta cos(\theta - \phi).
+f(\theta) = a+ \beta \cos(\theta - \phi).
 \end{equation*}
-Where $\theta$ is the direction of motion and $\phi$ is the parameter of a model.\\
+where $\theta$ is the direction of motion and $\phi$ is the preferred orientation.\\
 
-Alternatively, the same cosine tuning curve fit can be implemented by transferring the problem into the frequency domain. The tuning curve function is then given by the linear combination of the DC component and the second Fourier component:
+Alternatively, the same cosine tuning curve fit can be implemented by transferring the problem into the frequency domain. The tuning curve function is then given by the linear combination of the DC component $q_0$ and the second Fourier component $q_2$:
 \begin{equation*}
 f = q_0+q_2v_2+ \bar{q_2}\bar{v_2}
 \end{equation*}
-whete $v$ is a complex exponential and $q$ denotes projection of the mean spike count.
+where $v_2$ is a complex exponential.
 
 This model, however, assumes Gaussian i.i.d. error terms. Taking into account the physiological properties of neuronal firing, the fit can be improved by modelling the noise as Poisson distributed \cite{softky1993highly}. This imposes the constraint that the estimated spike counts be non-negative, and, importantly, reflects the significant heteroscedasticity of the data.
 
@@ -106,11 +106,11 @@ where the mean parameter $\lambda$ is the estimated spike count given by the von
  \frac{\partial L}{\partial \phi} =  & k(2\kappa \sin(2(\theta-\phi)) - \nu \sin(\phi-\theta)) -(2\kappa \sin(2(\theta-\phi))- \nu \sin(\phi-\theta)) \lambda
 \end{align*}
 
-\paragraph{Test for orientation selectivity.} Within the linear Fourier model, we implemented a permutation test to assess statistically the cells' orientation selectivity. A total of 1000 iterations were performed. In each iteration, we randomly permuted all elements of the spike count matrix, equivalent to shuffling the trials' condition labels. From each shuffled dataset we computed the test statistic $|q|$, the modulus of the second Fourier component. The distribution of all calculated values of $|q|$ is an estimate of the null distribution for the test, i.e. the sampling distribution under the null hypothesis of random firing (no orientation tuning). For each cell, we then computed a p-value as the proportion of $|q|$ values that are equal to or more extreme than the observed value for that cell. Cells with p-values that cross the chosen significance threshold of 0.01 were classified as orientation-selective.
+\paragraph{Test for orientation selectivity.} Within the linear Fourier model, we implemented a permutation test to assess statistically the cells' orientation selectivity. A total of 1000 iterations were performed. In each iteration, we randomly permuted all elements of the spike count matrix, equivalent to shuffling the trials' condition labels. From each shuffled dataset we computed the test statistic $|q|$, the modulus of the second Fourier component. The distribution of all calculated values of $|q|$ is an estimate of the null distribution for the test, i.e. the sampling distribution under the null hypothesis of random firing (no orientation tuning). For each cell, we then computed a p-value as the proportion of $|q|$ values that are equal to or more extreme than the observed value for that cell. Cells with p-values that crossed the chosen significance threshold of 0.01 were classified as orientation-selective.
 
 \section*{Results}
  
-\paragraph{Tuning curve fitting.} The figures below show data and tuning curves from two example cells, cell 29 (significantly orientation-selective, $p<0.01$) and cell 1 (not significantly tuned, $p=0.70$). The plots include spike counts for all 176 trials and the average count for each stimulus condition.
+\paragraph{Tuning curve fitting.} The figures below show data and tuning curves from two example cells, cell 29 (significantly orientation-selective, $p<0.01$) and cell 1 (not significantly tuned, $p=0.70$). Von Mises fits are shown for cell 29 only. The plots include spike counts for all 176 trials and the average count for each stimulus condition (black line). Figure~\ref{big1} shows a summary of von Mises Poisson noise fits for all 41 cells, combined with results of the hypothesis test.
 
 \newpage
 
@@ -131,7 +131,7 @@ where the mean parameter $\lambda$ is the estimated spike count given by the von
 \begin{figure}[!h]
 \centering
 \includegraphics[height=10cm]{fitVonMises.png}
-\caption{Von Mises tuning curves for cell 29.
+\caption{Von Mises tuning curves for cell 29. Red line shows tuning curve calculated with Gaussian noise model, blue line shows tuning curve calculated with Poisson noise model.
 \label{fitVonMises}}
 \end{figure}
 
@@ -140,14 +140,14 @@ where the mean parameter $\lambda$ is the estimated spike count given by the von
 \begin{figure}[!h]
 \centering
 \includegraphics[height=7cm]{permplot.png}
-\caption{Permutation test for cell 29. The histogram shows the of the test statistic $|q|$ generated by 1000 permutations of all trials' labels under the null hypothesis of random firing. The red line indicates the value of $|q|$ observed in the data for cell 29.
+\caption{Outcome of permutation test for cell 29. The histogram shows the distribution of the test statistic $|q|$ generated by 1000 permutations of all trials' labels under the null hypothesis of random firing. The red line indicates the value of $|q|$ observed in the data for cell 29.
 \label{permplot29}}
 \end{figure}
 
 \begin{figure}[!h]
 \centering
 \includegraphics[height=7cm]{permplot1.png}
-\caption{Permutation test for cell 1. The red line indicates the value of $|q|$ observed in the data for cell 1.
+\caption{Outcome of permutation test for cell 1. The red line indicates the value of $|q|$ observed in the data for cell 1.
 \label{permplot1}}
 \end{figure}
 
@@ -156,16 +156,17 @@ where the mean parameter $\lambda$ is the estimated spike count given by the von
 
 Estimating a good model of tuning curves is essential for judging V1 neurons' degree of orientation and motion direction selectivity. We first fitted a simple sinusoidal function to the firing rates for each stimulus condition. The cosine captures the periodicity of responses, whereby orientation-selective neurons shows two peak responses to the preferred direction $\phi$ and to $\phi \pm \pi$ (in both conditions, the stimulus has the same orientation). \\
 
-However, one simple cosine tuning curve cannot describe the behavior of cells that are selective to motion direction as well as orientation. These neurons show asymmetric peaks at $\phi$ and to $\phi \pm \pi$, as these conditions correspond to stimuli with opposite directions of motion. To capture this property, we modelled responses with a von Mises distribution with two harmonics. The exponential nonlinearity also rectified the data, so that estimated spike counts could take positive values only. \\
+However, one simple cosine tuning curve cannot describe the behavior of cells that are selective to motion direction as well as orientation. These neurons show asymmetric peaks at $\phi$ and to $\phi \pm \pi$, as these conditions correspond to stimuli with opposite directions of motion. To capture this property, we modelled responses with a von Mises distribution with two harmonics. Unlike the cosine, the exponential nonlinearity also rectified the data, so that estimated spike counts could take positive values only. \\
 
-The von Mises model yielded a good fit, but its theoretical assumptions are not well-matched to the characteristics of neural spike count data. Besides being non-negative, spike counts are discrete and heteroscedastic, meaning that errors are not identically and independently distributed as the Gaussian model would require. Specifically, the variance of spike counts is often proportional to their mean. We therefore included these constraints into the model by assuming noise with Poisson shape. The resulting fit, although usually very close to the Gaussian-noise fit, captured the inter-trial variability more adequately, thus providing a better model for the tuning curve.
+The von Mises model yielded a good fit, but its theoretical assumptions are not well-matched to the characteristics of neural spike count data. Besides being non-negative, spike counts are discrete and heteroscedastic, meaning that errors are not identically and independently distributed as the Gaussian model would require. Specifically, the variance of spike counts is often proportional to their mean. We therefore included these constraints into the model by assuming noise with Poisson shape. The resulting fit, although usually very close to the Gaussian-noise fit for most cells, captured the within-condition variability more adequately, thus providing a better model for the tuning curve.
 
 \newpage
 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=1\linewidth]{BIG1.png}
-\caption{ All cells with original spike count for each trial (grey dot) and tuning curves (blue line). Significantly orientation-selective neurons in white frames, non-significant cells in grey frames.}
+\caption{ All 41 cells with original spike counts for each trial (grey dots) and von Mises tuning curves with Poisson noise model (blue line). Significantly orientation-selective neurons in white frames, non-significant cells in grey frames.
+\label{big1}}
 \end{figure}
 
 \bibliography{Report}
